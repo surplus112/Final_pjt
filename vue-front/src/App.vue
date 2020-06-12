@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-      <div>
-        <router-link to="/">Home</router-link>|
-        <router-link v-if="isLoggedIn" @click.native="logout" to="{ name: 'LogoutView' }">Logout</router-link> |
-        <router-link v-if="isLoggedIn" :to="{ name: 'MypageView' }">Mypage</router-link>
-        <router-link v-if="!isLoggedIn" :to="{ name: 'LoginView'}">Login</router-link> |
-        <router-link v-if="!isLoggedIn" :to="{ name: 'SignupView'}">Signup</router-link>     
-      </div>
+    <div>
+      <router-link to="/">Home</router-link>|
+      <router-link v-if="isLoggedIn" @click.native="logout" to="{ name: 'LogoutView' }">Logout</router-link> |
+      <router-link v-if="isLoggedIn" :to="{ name: 'MypageView' }">Mypage</router-link>
+      <router-link v-if="!isLoggedIn" :to="{ name: 'LoginView'}">Login</router-link> |
+      <router-link v-if="!isLoggedIn" :to="{ name: 'SignupView'}">Signup</router-link>     
+    </div>
     <router-view
       @submit-signup-data="signup"
       @submit-login-data="login"
