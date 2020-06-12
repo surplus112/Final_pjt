@@ -1,5 +1,5 @@
 from django.db import models
-from django.comf import settings
+from django.conf import settings
 from movies.models import Movie
 
 # Create your models here.
