@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import LoginView from '../views/accounts/LoginView.vue'
 import LogoutView from '../views/accounts/LogoutView.vue'
 import SignupView from '../views/accounts/SignupView.vue'
-import UserUpdateView from '../views/accounts/UserUpdateView.vue'
+import MypageView from '../views/accounts/MypageView.vue'
 
 
 Vue.use(VueRouter)
@@ -31,9 +31,9 @@ Vue.use(VueRouter)
     component: SignupView
   },
   {
-    path: '/accounts/userupdate',
-    name: 'UserUpdateView',
-    component: UserUpdateView
+    path: '/accounts/Mypage',
+    name: 'MypageView',
+    component: MypageView
   },
 ]
 
