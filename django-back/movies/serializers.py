@@ -10,7 +10,7 @@ class MovieListSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ['title', 'original_title']
+        fields = '__all__'
 
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
