@@ -1,10 +1,14 @@
 <template>
   <div id="app">
-    <div>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/accounts/login">login</router-link>
-    </div>
+      <div>
+        <router-link to="/">Home</router-link>|
+        <router-link v-if="isLoggedIn" @click.native="logout" to="{ name: 'LogoutView' }">Logout</router-link> |
+        <router-link v-if="isLoggedIn" :to="{ name: 'MypageView' }">Mypage</router-link>
+        <router-link v-if="!isLoggedIn" :to="{ name: 'LoginView'}">Login</router-link> |
+        <router-link v-if="!isLoggedIn" :to="{ name: 'SignupView'}">Signup</router-link>     
+      </div>
     <router-view
+      @submit-signup-data="signup"
       @submit-login-data="login"
     />
   </div>
@@ -22,16 +26,19 @@ export default {
       isLoggedIn: false,
     }
   },
+  mounted() {
+    this.isLoggedIn = this.$ccokies.iskey('auth-token')
+  },
   methods: {
     setCookie(token) {
       this.$cookies.set('auth-token', token)
       this.isLoggedIn = true
     },
     signup(signupData) {
-      axios.post(SERVER_URL + '/rest-auth/signup', signupData)
+      axios.post(SERVER_URL + '/rest-auth/signup/', signupData)
         .then(res => {
-          this.setCookie(res.datd.key)
-          this.$router.push({ name: 'Home' })
+          this.setCookie(res.data.key)
+          this.$router.push({ name: 'Home'})
         })
         .catch(err => console.log(err.response.data))
     },
@@ -60,3 +67,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>
