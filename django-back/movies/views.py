@@ -20,9 +20,9 @@ def movie_detail(request, movie_pk):
     return Response(serializer.data)
 
 @api_view(['POST'])
-@permission_classes([IsSuperUser])
+# @permission_classes([IsSuperUser])
 def movie_create(request):
     serializer = MovieSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(user=request.user)
+        serializer.save()
         return Response(serializer.data)
