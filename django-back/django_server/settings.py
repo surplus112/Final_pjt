@@ -37,6 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # DRF
+    'rest_framework',
+    'rest_framework.authtoken',
+
+    # auth
+    'rest_auth',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
+    # CORS
+    'corsheaders',
 
     # my app
     'articles',
@@ -45,6 +59,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -108,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-KR'
 
 TIME_ZONE = 'UTC'
 
@@ -123,3 +138,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Custom user model
+AUTH_USER_MODEL = 'accounts.User'
+
+# django sites app setting
+SITE_ID = 1
+
+# DRF auth settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
+# CORS Allow
+CORS_ORIGIN_ALLOW_ALL = True
