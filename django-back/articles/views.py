@@ -35,6 +35,6 @@ def article_update(request, article_pk):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
-        else:
-            movie.delete()
-            return Response({'message':'Article has been deleted!'})
+    else:
+        article.delete()
+        return Response({'message':'Article has been deleted!'})
