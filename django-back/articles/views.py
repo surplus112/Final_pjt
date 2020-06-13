@@ -2,8 +2,10 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .serializers import ArticleListSerializer, ArticleSerializer, CommentSerializer
 from .models import Article, Comment
+from .serializers import ArticleListSerializer, ArticleSerializer, CommentSerializer
+from .permissions import IsAuthorOrReadonly
+
 
 # Create your views here.
 @api_view(['GET'])
@@ -27,7 +29,7 @@ def article_create(request):
         return Response(serializer.data)
 
 @api_view(['PUT', 'DELETE'])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthorOrReadonly])
 def article_update(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     if request.method == 'PUT':
