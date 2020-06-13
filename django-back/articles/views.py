@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .models import Article, Comment
 from .serializers import ArticleListSerializer, ArticleSerializer, CommentSerializer
-from .permissions import IsAuthor
 
 
 # Create your views here.
@@ -15,6 +14,7 @@ def article_list(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def article_detail(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     serializer = ArticleSerializer(article)
@@ -42,3 +42,15 @@ def article_update(request, article_pk):
             return Response({'message':'Article has been deleted!'})
     else:
         return Response({'message':'author only'})
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def comments_create(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        comment = serializer.save(commit=False)
+        comment.user = request.user
+        comment.article = article
+        comment.save()
+        return Response(serializer.data)
