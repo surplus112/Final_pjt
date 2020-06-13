@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div>
-      <router-link to="/">Home</router-link>|
+      <router-link to="/">Home</router-link> |
+      <router-link :to="{ name: 'MovieListView' }">MovieList</router-link> |
+      <router-link v-if="isLoggedIn" :to="{ name: 'ArticleCreateView' }">New Article</router-link> |
       <router-link v-if="isLoggedIn" @click.native="logout" to="{ name: 'LogoutView' }">Logout</router-link> |
       <router-link v-if="isLoggedIn" :to="{ name: 'MypageView' }">Mypage</router-link>
       <router-link v-if="!isLoggedIn" :to="{ name: 'LoginView'}">Login</router-link> |
@@ -69,5 +71,12 @@ export default {
 </script>
 
 <style>
+  #app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
 </style>

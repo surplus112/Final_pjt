@@ -6,12 +6,16 @@
 
 <script>
 
+
 export default {
   name: "ArticleListView",
   data () {
-    return {}
+    return {
+    }
   },
-}
+  methods : {
+    },
+  }
 </script>
 
 <style>
