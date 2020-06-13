@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/venv,django,python
-# Edit at https://www.toptal.com/developers/gitignore?templates=venv,django,python
+# Created by https://www.toptal.com/developers/gitignore/api/python,django,venv,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=python,django,venv,visualstudiocode
 
 ### Django ###
 *.log
@@ -8,6 +8,8 @@
 *.pyc
 __pycache__/
 local_settings.py
+db.sqlite3
+db.sqlite3-journal
 media
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
@@ -213,4 +215,16 @@ dmypy.json
 pyvenv.cfg
 pip-selfcheck.json
 
-# End of https://www.toptal.com/developers/gitignore/api/venv,django,python
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.toptal.com/developers/gitignore/api/python,django,venv,visualstudiocode
