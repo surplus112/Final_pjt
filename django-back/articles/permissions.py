@@ -5,7 +5,7 @@ class IsAuthorOrReadonly(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.is_authenticated
     # 작성자에 한해 Record에 대한 수정 / 삭제 허용
-    def has_object_permission(self, request. views, obj):
+    def has_object_permission(self, request, views, obj):
         # 조회 요청은 항상 True
         if request.method in permissions.SAFE_METHODS:
             return True
