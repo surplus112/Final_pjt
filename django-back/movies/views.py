@@ -40,7 +40,7 @@ def movie_update(request, movie_pk):
             return Response(serializer.data)
     else:
         movie.delete()
-        return Response({'message':'Comment has been deleted!'})
+        return Response({'message':'Movie has been deleted!'})
 
 
 

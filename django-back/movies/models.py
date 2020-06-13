@@ -22,3 +22,8 @@ class Movie(models.Model):
     genres = models.ManyToManyField(Genre, related_name='movie_genres')
     def __str__(self):
         return self.title
+
+class Rating(models.Model):
+    score = models.IntegerField()
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
