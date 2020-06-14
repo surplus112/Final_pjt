@@ -7,6 +7,7 @@
           <p>{{movie.id}}</p>
           <p>{{movie.title}}</p>
           <p>{{movie.release_date}}</p>
+          <MovieListItem :movie="movie" />
         </li>
       </ul>
     </div>
@@ -15,11 +16,15 @@
 
 <script>
 import axios from 'axios'
+import MovieListItem from '@/components/MovieListItem.vue'
 
 const SERVER_URL = 'http://localhost:8000'
 
 export default {
   name: 'MovieListView',
+  components : {
+    MovieListItem,
+  },  
   data () {
     return {
       movies: []
@@ -29,6 +34,7 @@ export default {
     fetchMovies() {
       axios.get(`${SERVER_URL}/movies/`)
         .then(res => {
+          // console.log(res.data)
           this.movies = res.data
         })
         .catch(err => console.log(err.response.data))

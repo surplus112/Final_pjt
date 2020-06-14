@@ -10,6 +10,7 @@ import MypageView from '../views/accounts/MypageView.vue'
 import ArticleListView from '../views/articles/ArticleListView.vue'
 import ArticleCreateView from '../views/articles/ArticleCreateView.vue'
 import ArticleDetailView from '../views/articles/ArticleDetailView.vue'
+import ArticleUpdateView from '../views/articles/ArticleUpdateView.vue'
 
 import MovieListView from '../views/movies/MovieListView.vue'
 
@@ -55,6 +56,11 @@ Vue.use(VueRouter)
     path: '/articles/:id',
     name: 'ArticleDetailView',
     component: ArticleDetailView
+  },
+  {
+    path: '/articles/:id/articleupdate',
+    name: 'ArticleUpdateView',
+    component: ArticleUpdateView
   },
   {
     path: '/movies/movielist',
