@@ -5,7 +5,7 @@ from accounts.serializers import UserSerializer
 class ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ['id', 'title', 'movie', 'created_at']
+        fields = ['id', 'title', 'user', 'updated_at']
 
 class ArticleSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=False)
