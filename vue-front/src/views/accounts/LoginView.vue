@@ -16,6 +16,10 @@
 </template>
 
 <script>
+import axios from 'axios'
+
+const SERVER_URL = 'http://localhost:8000'
+
 export default {
   name: "LoginView",
   data () {
@@ -26,10 +30,27 @@ export default {
       }
     }
   },
-  methods :{
-    login() {
-      this.$emit('submit-login-data', this.loginData)
+  props: {
+    isLoggedIn: {
+      type: Boolean
     }
+  },
+  methods: {
+    setCookie(token) {
+      this.$cookies.set('auth-token', token)
+    },
+    login() {
+      axios.post(`${SERVER_URL}/rest-auth/login/`, this.loginData)
+        .then(res => {
+          this.setCookie(res.data.key)
+          this.$router.push({ name: 'Home'})
+        })
+        .catch(err => console.log(err.response.data))
+      this.$emit('is-login', this.isLoggedIn)
+    },
+    // login() {
+    //   this.$emit('submit-login-data', this.loginData)
+    // }
   }
 }
 </script>
