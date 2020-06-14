@@ -27,4 +27,4 @@ class Review(models.Model):
     score = models.IntegerField()
     content = models.CharField(max_length=200)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    scored_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='scored_reviews')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
