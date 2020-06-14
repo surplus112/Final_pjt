@@ -11,16 +11,18 @@ class ArticleSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=False)
     class Meta:
         model = Article
-        fields = '__all__'
+        fields = ['id', 'user']
 
 class CommentListSerializer(serializers.ModelSerializer):
+    user = UserSerializer(required=False)
     class Meta:
         model = Comment
         fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=False)
+    article = ArticleSerializer(required=False)
     class Meta:
         model = Comment
         fields = '__all__'
-        read_only_fields = ['article']
+        # read_only_fields = ['article']
