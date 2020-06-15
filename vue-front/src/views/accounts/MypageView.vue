@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "MypageView",
+  name: 'Mypage',
   data () {
     return {}
   },

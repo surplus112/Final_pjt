@@ -11,7 +11,7 @@
 // const SERVER_URL = 'http://localhost:8000'
 
 export default {
-  name: "ArticleUpdateView",
+  name: "ArticleUpdate",
   props: {
     article: {
       type: Object

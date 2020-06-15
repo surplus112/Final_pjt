@@ -1,27 +1,23 @@
 <template>
   <div>
     <h1>Login</h1>
-    <form @submit.prevent="login">
-      <div>
-        <label for="username">ID</label>
-        <input v-model="loginData.username" class="form-control" id="username">
-      </div>
-      <div>
-        <label for="password">password</label>
-        <input v-model="loginData.password" type="password" class="form=control" id="password">
-      </div>
-      <button type="submit">확인</button>
-    </form>
+    <div>
+      <label for="username">ID</label>
+      <input v-model="loginData.username" type="text" id="username">
+    </div>
+    <div>
+      <label for="password">password</label>
+      <input v-model="loginData.password" type="password" id="password">
+    </div>
+    <button @click="login(loginData)">확인</button>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-
-const SERVER_URL = 'http://localhost:8000'
+import { mapActions } from 'vuex'
 
 export default {
-  name: "LoginView",
+  name: 'Login',
   data () {
     return {
       loginData: {
@@ -30,27 +26,8 @@ export default {
       }
     }
   },
-  props: {
-    isLoggedIn: {
-      type: Boolean
-    }
-  },
   methods: {
-    setCookie(token) {
-      this.$cookies.set('auth-token', token)
-    },
-    login() {
-      axios.post(`${SERVER_URL}/rest-auth/login/`, this.loginData)
-        .then(res => {
-          this.setCookie(res.data.key)
-          this.$router.push({ name: 'Home'})
-        })
-        .catch(err => console.log(err.response.data))
-      this.$emit('is-login', this.isLoggedIn)
-    },
-    // login() {
-    //   this.$emit('submit-login-data', this.loginData)
-    // }
+    ...mapActions(['login'])
   }
 }
 </script>

@@ -7,12 +7,9 @@
 <script>
 export default {
   name: "MovieSearch",
-  data () {
-    return {}
-  },
 }
 </script>
 
-<style></style>
+<style>
 
 </style>

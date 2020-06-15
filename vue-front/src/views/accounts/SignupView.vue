@@ -1,27 +1,29 @@
 <template>
   <div>
-    <h1>SignupView</h1>
-    <form @submit.prevent="signup">
-      <div class="form-group">
+    <h1>Signup</h1>
+    <form>
+      <div>
         <label for="username">ID</label>
-        <input v-model="signupData.username" class="form-control" id="username">
+        <input v-model="signupData.username" id="username" type="text">
       </div>
-      <div class="form-group">
-        <label for="password">password</label>
-        <input v-model="signupData.password1" class="form-control" id="password">
+      <div>
+        <label for="password1">password</label>
+        <input v-model="signupData.password1" id="password1" type="password">
       </div>
-      <div class="form-group">
+      <div>
         <label for="password2">Confirm password</label>
-        <input v-model="signupData.password2" class="form-control" id="password2">
+        <input v-model="signupData.password2" id="password2" type="password">
       </div>
-      <button type="submit">확인</button>
+      <button @click="signup(signupData)">확인</button>
     </form>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: "SignupView",
+  name: 'Signup',
   data () {
     return {
       signupData: {
@@ -32,9 +34,7 @@ export default {
     }
   },
   methods: {
-    signup() {
-      this.$emit('submit-signup-data', this.signupData)
-    }
+    ...mapActions(['signup'])
   }
 }
 </script>

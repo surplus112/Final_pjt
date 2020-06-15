@@ -21,7 +21,7 @@ import axios from 'axios'
 const SERVER_URL = "http://localhost:8000"
 
 export default {
-  name: "ArticleCreateView",
+  name: "ArticleCreate",
   data () {
     return {
       articleData: {
@@ -40,7 +40,7 @@ export default {
       axios.post(SERVER_URL + '/articles/create/', this.articleData, config)
         .then(res => {
           console.log(res.data)
-          this.$router.push({ name: 'ArticleListView' })
+          this.$router.push({ name: 'ArticleList' })
         })
         .catch(err => console.log(err.response.data))
     }

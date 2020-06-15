@@ -21,7 +21,7 @@ import MovieListItem from '@/components/MovieListItem.vue'
 const SERVER_URL = 'http://localhost:8000'
 
 export default {
-  name: 'MovieListView',
+  name: 'MovieList',
   components : {
     MovieListItem,
   },  
