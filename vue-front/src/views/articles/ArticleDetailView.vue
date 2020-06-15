@@ -5,7 +5,7 @@
         <p>{{ article.user.username }}</p>
         <p>{{ article.title }}</p>
         <p>{{ article.content }}</p>
-        <router-link :article="article" :to="{ name: 'ArticleUpdateView', params: { id: article.id } }">
+        <router-link :to="{ name: 'ArticleUpdateView', params: { id: article.id } }">
           수정하기
         </router-link>
         <Comment :article_id="article.id" />
