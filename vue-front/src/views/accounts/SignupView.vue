@@ -14,7 +14,7 @@
         <label for="password2">Confirm password</label>
         <input v-model="signupData.password2" id="password2" type="password">
       </div>
-      <button @click="signup(signupData)">확인</button>
+      <button @click.prevent="signup(signupData)">확인</button>
     </form>
   </div>
 </template>

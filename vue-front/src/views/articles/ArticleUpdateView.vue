@@ -1,21 +1,32 @@
 <template>
   <div>
     <h1>ArticleUpdate</h1>
-    {{ article }}
+    {{ index }}
+    <!-- {{ articles[this.index] }} -->
+    <div v-for="article in articles" :key="article.id">
+      {{ article.id }}
+    </div>
   </div>
 </template>
 
 <script>
 // import axios from 'axios'
+import { mapState } from 'vuex'
 
 // const SERVER_URL = 'http://localhost:8000'
+// ${this.$route.params.id}
 
 export default {
   name: "ArticleUpdate",
-  props: {
-    article: {
-      type: Object
+  data() {
+    const index = this.$route.params.id
+    return {
+      index: index,
+
     }
+  },
+  computed: {
+    ...mapState(['articles'])
   },
   methods: {
     // ArticleUpdate () {

@@ -12,19 +12,27 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     authToken: cookies.get('auth-token'),
+    articles: [],
+    movies: [],
+    article: null,
   },
   getters: {
     isLoggedIn: state => !!state.authToken,
-    config: state => ({
-      headers: { 
-        Authorization: `Token ${state.authToken}` 
-      }
-    })
+    config: state => ({headers: { Authorization: `Token ${state.authToken}` }})
   },
   mutations: {
     SET_TOKEN(state, token) {
       state.authToken = token
       cookies.set('auth-token', token)
+    },
+    SET_ARTICLES(state, articles) {
+      state.articles = articles
+    },
+    SET_MOVIES(state, movies) {
+      state.movies = movies
+    },
+    SET_ARTICLE(state, article) {
+      state.article = article
     }
   },
   actions: {
@@ -34,7 +42,7 @@ export default new Vuex.Store({
           commit('SET_TOKEN', res.data.key)
           router.push({ name: 'Home' })
         })
-        .catch(err => console.log(err.response.data))
+        .catch(err => alert(err.response.data))
     },
     signup({ dispatch }, signupData) {
       const info = {
@@ -56,9 +64,29 @@ export default new Vuex.Store({
           commit('SET_TOKEN', null)
           cookies.remove('auth-token')
           router.push({ name: 'Home' })
-        .catch(err => console.log(err.response.data))
         })
+        .catch(err => console.log(err.response.data))
     },
+    fetchArticles({ commit }) {
+      axios.get(SERVER.URL + SERVER.ROUTES.articleList)
+        .then(res => commit('SET_ARTICLES', res.data))
+        .catch(err => console.log(err))
+    },
+    createArticle({ getters }, articleData) {
+      axios.post(SERVER.URL + SERVER.ROUTES.createArticle, articleData, getters.config)
+        .then(() => {
+          router.push({ name: 'ArticleList' })
+        })
+        .catch(err => console.log(err.response.data))
+    },
+    fetchMovies({ commit }) {
+      axios.get(SERVER.URL + SERVER.ROUTES.movieList)
+        .then(res => commit('SET_MOVIES', res.data))
+        .catch(err => console.log(err))
+    },
+    getArticle({ commit }, articleInfo) {
+      commit('SET_ARTICLE', articleInfo)
+    }
   },
   modules: {
   }

@@ -9,7 +9,7 @@
       <label for="password">password</label>
       <input v-model="loginData.password" type="password" id="password">
     </div>
-    <button @click="login(loginData)">확인</button>
+    <button @click.prevent="login(loginData)">확인</button>
   </div>
 </template>
 

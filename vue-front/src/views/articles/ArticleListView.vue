@@ -13,29 +13,19 @@
 </template>
 
 <script>
-import axios from 'axios'
-
-const SERVER_URL = 'http://localhost:8000'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: "ArticleList",
-  data () {
-    return {
-      articles: []
-    }
+  computed: {
+    ...mapState(['articles'])
   },
-  methods : {
-    fetchArticles() {
-      axios.get(`${SERVER_URL}/articles/`)
-        .then(res => {
-          this.articles = res.data
-        })
-        .catch(err => console.log(err.response.data))
-    },
+  methods: {
+    ...mapActions(['fetchArticles'])
   },
   created() {
     this.fetchArticles()
-  }
+  },
 }
 </script>
 
