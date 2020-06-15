@@ -34,7 +34,7 @@ export default {
     ArticleUpdate () {
       axios.put(`${SERVER_URL}/articles/${this.article.id}/articleupdate/`)
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           this.articleupdate = res.data
         })
         .catch(err => console.log(err.response.data))
@@ -47,7 +47,7 @@ export default {
       }
       axios.post(`${SERVER_URL}/articles/${this.$route.params.id}/`, null, config)
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           this.article = res.data
         })
         .catch(err => {console.log(err)})
