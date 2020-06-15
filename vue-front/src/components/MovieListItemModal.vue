@@ -11,9 +11,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <img :src="movie.backdropUrl" class="w-100">
+          <img :src="backdropUrl">
           <hr>
-          <button class="btn btn-info">{{ movie.user_rating }}</button>
           <p>{{ movie.overview }}</p>
         </div>
         <div class="modal-footer">
@@ -39,7 +38,7 @@ export default {
       return 'Modal-' + this.movie.id
     },
     backdropUrl() {
-      return "https://image.tmdb.org/t/p/w300/" + this.movie.backdrop_path
+      return "https://image.tmdb.org/t/p/original" + this.movie.backdrop_path
     },
   },
 }

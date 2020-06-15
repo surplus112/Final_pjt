@@ -1,4 +1,4 @@
-<template>
+<!--- <template>
   <div>
     <h1>MovieListItem</h1>
     <div>
@@ -12,6 +12,20 @@
     </div>
     <MovieListItemModal :movie="movie" />
   </div>
+</template> -->
+<template>
+  <div class="col-3">
+    <div class="card w-100">
+      <img :src="posterUrl" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ movie.title }}</h5>
+        <p class="card-text"></p>
+        <a href="#" class="btn btn-outline-primary" data-toggle="modal" :data-target="movieId">영화 정보 상세보기</a>
+      </div>
+    </div>
+    <MovieListItemModal :movie="movie" />
+  </div>
+
 </template>
 
 <script>

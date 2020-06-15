@@ -12,7 +12,7 @@
       </ul>
     </div>
   </div>
-</template>
+</template> 
 
 <script>
 import { mapState, mapActions } from 'vuex'
