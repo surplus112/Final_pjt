@@ -2,15 +2,21 @@
   <div>
     <h1>MovieListItem</h1>
     <div>
-      <img :src="posterUrl" alt="...">
+        <h5>-------------{{ movie.title }}-------------</h5>
       <div>
-        <h5>{{ movie.title }}</h5>
+        <img :src="posterUrl" alt="...">
+      </div>
+      <div>
+        <a href="#" class="btn btn-outline-primary" data-toggle="modal" :data-target="movieId">영화 정보 상세보기</a>
       </div>
     </div>
+    <MovieListItemModal :movie="movie" />
   </div>
 </template>
 
 <script>
+import MovieListItemModal from '@/components/MovieListItemModal.vue'
+
 export default {
   name: "MovieListItem",
   props: {
@@ -18,12 +24,19 @@ export default {
       type: Object,
     },
   },
+  components:{
+    MovieListItemModal,
+  },
   computed: {
     posterUrl() {
       return "https://image.tmdb.org/t/p/w300/" + this.movie.poster_path
     },
-  }
+    movieId() {
+      return '#Modal-' + this.movie.id
+    },
+  },
 }
+                      
 </script>
 
 <style>

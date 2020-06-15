@@ -3,6 +3,9 @@ export default {
   ROUTES: {
     signup: '/rest-auth/signup/',
     login: '/rest-auth/login/',
-    logout: '/rest-auth/logout/'
+    logout: '/rest-auth/logout/',
+    articleList: '/articles/',
+    artcielCereate: '/articles/create',
+    movieList: '/movies/'
   }
 }
