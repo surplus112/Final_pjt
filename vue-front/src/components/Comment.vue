@@ -1,10 +1,13 @@
 <template>
   <div>
     <h1>댓글</h1>
-    <!-- 문제점. user의 id값만 나오고 username이 안보임 -->
     {{ article_id }}
     <div v-for="comment in comments" :key="`comment_${comment.id}`">
       {{ comment }}
+      <div>
+        <button>수정</button>
+        <button>삭제</button>
+      </div>
     </div>
     <!-- 댓글 폼 만들고, 버튼 누르면 메서드 실행 -->
     <form @submit.prevent="createComment">
@@ -26,10 +29,9 @@ export default {
   name: 'Comment',
   data() {
     return {
-      comments: null,
+      comments: [],
       commentForm: {
-        content: null,
-        article: this.article_id
+        content: null
       }
     }
   },
@@ -43,7 +45,7 @@ export default {
     getCommentList() {
       axios.get(`${SERVER_URL}/articles/${this.article_id}/comments/`)
         .then(res => {
-          // console.log(res.data)
+          console.log(res.data)
           this.comments = res.data
         })
         .catch(err => console.log(err.response.data))
