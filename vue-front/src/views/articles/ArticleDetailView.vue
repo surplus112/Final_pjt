@@ -1,11 +1,11 @@
 <template>
   <div>
-      <h1>ArticleDetailView</h1>
+      <h1>ArticleDetail</h1>
       <div v-if="this.article">
         <p>{{ article.user.username }}</p>
         <p>{{ article.title }}</p>
         <p>{{ article.content }}</p>
-        <router-link :to="{ name: 'ArticleUpdateView', params: { id: article.id } }">
+        <router-link :to="{ name: 'ArticleUpdate', params: { id: article.id } }">
           수정하기
         </router-link>
         <Comment :article_id="article.id" />
@@ -20,7 +20,7 @@ import Comment from '@/components/Comment.vue'
 const SERVER_URL = 'http://localhost:8000'
 
 export default {
-  name: 'ArticleDetailView',
+  name: 'ArticleDetail',
   components: {
     Comment,
   },

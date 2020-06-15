@@ -1,11 +1,11 @@
 <template>
   <div>
-      <h1>ArticleListView</h1>
+      <h1>ArticleList</h1>
       <div id="article-list">
         <ul>
           <li v-for="article in articles" :key="`article_${article.id}`">
             <p>{{ article }}</p>
-            <router-link :to="{ name: 'ArticleDetailView', params: { id: article.id } }">{{ article.title }}</router-link>
+            <router-link :to="{ name: 'ArticleDetail', params: { id: article.id } }">{{ article.title }}</router-link>
           </li>
         </ul>
       </div>
@@ -18,7 +18,7 @@ import axios from 'axios'
 const SERVER_URL = 'http://localhost:8000'
 
 export default {
-  name: "ArticleListView",
+  name: "ArticleList",
   data () {
     return {
       articles: []

@@ -3,8 +3,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: "LogoutView",
+  name: 'Logout',
+  methods: {
+    ...mapActions(['logout'])
+  },
+  created() {
+    this.logout()
+  }
 }
 </script>
 
