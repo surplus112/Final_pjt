@@ -12,11 +12,6 @@
 
 export default {
   name: "ArticleUpdateView",
-  data () {
-    return {
-    
-    }
-  },
   props: {
     article: {
       type: Object
