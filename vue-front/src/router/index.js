@@ -48,7 +48,7 @@ Vue.use(VueRouter)
     component: ArticleListView
   },
   {
-    path: '/articles/articlecreate',
+    path: '/articles/creates',
     name: 'ArticleCreateView',
     component: ArticleCreateView
   },
@@ -58,12 +58,12 @@ Vue.use(VueRouter)
     component: ArticleDetailView
   },
   {
-    path: '/articles/:id/articleupdate',
+    path: '/articles/:id/updates',
     name: 'ArticleUpdateView',
     component: ArticleUpdateView
   },
   {
-    path: '/movies/movielist',
+    path: '/movies',
     name: 'MovieListView',
     component: MovieListView
   },

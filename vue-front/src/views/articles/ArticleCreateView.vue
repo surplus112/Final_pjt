@@ -38,9 +38,9 @@ export default {
         }
       }
       axios.post(SERVER_URL + '/articles/create/', this.articleData, config)
-        .then(() => {
-          // console.log(res.data)
-          this.$router.push({ name: 'Home' })
+        .then(res => {
+          console.log(res.data)
+          this.$router.push({ name: 'ArticleListView' })
         })
         .catch(err => console.log(err.response.data))
     }
