@@ -29,7 +29,7 @@ export default {
   name: 'Comment',
   data() {
     return {
-      comments: [],
+      comments: null,
       commentForm: {
         content: null
       }
