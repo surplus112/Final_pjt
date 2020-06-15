@@ -14,7 +14,7 @@ export default new Vuex.Store({
     authToken: cookies.get('auth-token'),
     articles: [],
     movies: [],
-    article: null,
+    // article: null,
   },
   getters: {
     isLoggedIn: state => !!state.authToken,
@@ -31,9 +31,9 @@ export default new Vuex.Store({
     SET_MOVIES(state, movies) {
       state.movies = movies
     },
-    SET_ARTICLE(state, article) {
-      state.article = article
-    }
+    // SET_ARTICLE(state, article) {
+    //   state.article = article
+    // }
   },
   actions: {
     postAuthData({ commit }, info) {
@@ -84,9 +84,9 @@ export default new Vuex.Store({
         .then(res => commit('SET_MOVIES', res.data))
         .catch(err => console.log(err))
     },
-    getArticle({ commit }, articleInfo) {
-      commit('SET_ARTICLE', articleInfo)
-    }
+    // getArticle({ commit }, articleInfo) {
+    //   commit('SET_ARTICLE', articleInfo)
+    // }
   },
   modules: {
   }

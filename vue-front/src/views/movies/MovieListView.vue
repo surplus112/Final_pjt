@@ -2,17 +2,12 @@
   <div>
     <h1>MovieList</h1>
     <div id="movie-list">
-      <ul>
-        <li v-for="movie in movies" :key="`movie_${movie.id}`">
-          <p>{{movie.id}}</p>
-          <p>{{movie.title}}</p>
-          <p>{{movie.release_date}}</p>
-          <MovieListItem :movie="movie" />
-        </li>
-      </ul>
+      <div v-for="movie in movies" :key="`movie_${movie.id}`">
+      <MovieListItem :movie="movie" />
+      </div>
     </div>
   </div>
-</template> 
+</template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
@@ -32,11 +27,10 @@ export default {
   components : {
     MovieListItem,
   }, 
-
-  
 }
 </script>
 
 <style>
 
 </style>
+
