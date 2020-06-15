@@ -8,6 +8,9 @@
         <router-link @click="getArticle(article)" :to="{ name: 'ArticleUpdate', params: { id: article.id } }">
           수정하기
         </router-link>
+        <router-link @click.native="deleteArticle" to="/articles/comments/delete">
+          삭제하기
+        </router-link>
         <router-view :article="this.article" />
         <Comment :article_id="article.id" />
       </div>
@@ -19,7 +22,7 @@ import axios from 'axios'
 
 import Comment from '@/components/Comment.vue'
 
-import { mapActions } from 'vuex'
+// import { mapActions } from 'vuex'
 
 const SERVER_URL = 'http://localhost:8000'
 
@@ -34,7 +37,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getArticle']),
+    // ...mapActions(['getArticle']),
     fetchArtcleDetail() {
       const config = {
         headers: {
@@ -47,6 +50,20 @@ export default {
           this.article = res.data
         })
         .catch(err => {console.log(err)})
+    },
+    deleteArticle() {
+      const config = {
+        headers: {
+          Authorization: `Token ${this.$cookies.get(`auth-token`)}`
+        }
+      }
+      axios.delete(`${SERVER_URL}/articles/${this.article.id}/update/`, config)
+        .then(res => {
+          // console.log(res.data.message)
+          this.$router.push({ name: 'ArticleList' })
+          alert(res.data.message)
+        })
+        .catch(err => alert(err))
     }
   },
   created() {
