@@ -1,12 +1,17 @@
 <template>
   <div>
-    <h1>댓글을 작성해주세요</h1>
     <form>
       <div>
         <label for="content">내용</label>
-        <input @keypress.enter.prevent="onInput" id="content">
+        <span v-if="commentValue">
+          <input @keypress.enter.prevent="changeInput" id="content" :value="commentValue">
+          <!-- <button @click.prevent="changeInput" type="submit">제출</button> -->
+        </span>
+        <span v-else>
+          <input @keypress.enter.prevent="onInput" id="content" v-model="newValue">
+          <button @click.prevent="onInput" type="submit">제출</button>
+        </span>
       </div>
-      <button type="submit">제출</button>
     </form>
   </div>
 </template>
@@ -14,11 +19,26 @@
 <script>
 export default {
   name: 'CommentCreate',
+  data() {
+    return {
+      newValue: ''
+    }
+  },
+  props: {
+    commentValue: {
+      type: String
+    }
+  },
   methods: {
-    onInput(e) {
+    onInput() {
       // console.log(e.target.value)
-      this.$emit('submit-comment', e.target.value)
+      // console.log(this.newValue)
+      this.$emit('submit-comment', this.newValue)
+      this.newValue = null
     },
+    changeInput(e) {
+      this.$emit('change-comment', e.target.value)
+    }
   },
 }
 </script>
