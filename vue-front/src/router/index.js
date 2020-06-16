@@ -14,6 +14,7 @@ import ArticleUpdateView from '../views/articles/ArticleUpdateView.vue'
 
 import MovieListView from '../views/movies/MovieListView.vue'
 import MovieDetailView from '../views/movies/MovieDetailView.vue'
+import MovieUpdateView from '../views/movies/MovieUpdateView.vue'
 
 Vue.use(VueRouter)
 
@@ -72,6 +73,11 @@ Vue.use(VueRouter)
     path: '/movies/:id',
     name: 'MovieDetail',
     component: MovieDetailView
+  },
+  {
+    path: '/movies/:id',
+    name: 'MovieUpdate',
+    component: MovieUpdateView
   },
 ]
 

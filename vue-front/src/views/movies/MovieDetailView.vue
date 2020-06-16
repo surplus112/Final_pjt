@@ -4,7 +4,9 @@
       <h1>{{ movie.title }}</h1>
       <p>{{ movie.overview }}</p>
     </div>
-    <!-- <router-view :movie="this.movie" /> -->
+    <div>
+      <router-link :to="{name: 'MovieUpdate', params: {id: movie}} ">수정</router-link>
+    </div>
   </div>
 </template>
 
@@ -28,7 +30,6 @@ export default {
         })
         .catch(err => {console.log(err)})
     },
-    
   },
   created() {
     this.fetchMovieDetail()
