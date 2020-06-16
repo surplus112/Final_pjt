@@ -2,9 +2,9 @@
   <div>
     <span v-if="reviewValue">
       <label for="score">평점</label>
-      <input id="score" :value="reviewScore">
+      <input id="score" :value="reviewScore" @input="reviewData.score=$event.target.value">
       <label for="content">내용</label>
-      <input id="content" :value="reviewValue">
+      <input id="content" :value="reviewValue" @input="reviewData.content=$event.target.value">
       <button @click.prevent="changeInput" type="submit">제출</button>
     </span>
     <span v-else>
@@ -55,7 +55,7 @@ export default {
       this.reviewData.content = ''
     },
     changeInput() {
-      console.log(this.checkReview)
+      console.log(this.reviewData)
       this.$emit('change-review', this.reviewData)
     }
   },

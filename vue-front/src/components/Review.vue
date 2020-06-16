@@ -82,7 +82,7 @@ export default {
           Authorization: `Token ${this.$cookies.get(`auth-token`)}`
         }
       }
-      axios.put(`${SERVER_URL}/movies/${this.movieId}/comments/${this.checkReview.reviewId}/`, review, config)
+      axios.put(`${SERVER_URL}/movies/${this.movieId}/reviews/${this.checkReview.reviewId}/`, review, config)
         .then(() => {
           // console.log(res.data)
           this.checkReview.isReview = false
