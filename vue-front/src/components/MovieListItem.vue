@@ -13,6 +13,7 @@
 </template>
 
 <script>
+
 export default {
   name: "MovieListItem",
   props: {
@@ -24,9 +25,6 @@ export default {
     posterUrl() {
       return "https://image.tmdb.org/t/p/w300/" + this.movie.poster_path
     },
-    // movieId() {
-    //   return '#Modal-' + this.movie.id
-    // },
   },
 }
                       

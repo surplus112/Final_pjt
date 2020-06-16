@@ -3,7 +3,8 @@
       <h1>ArticleList</h1>
       <div id="article-list">
         <ul>
-          <li v-for="article in articles" :key="`article_${article.id}`">
+          <li v-for="(article, number) in articles" :key="`article_${article.id}`">
+            <p>{{ number+1 }}</p>
             <p>{{ article }}</p>
             <router-link :to="{ name: 'ArticleDetail', params: { id: article.id } }">{{ article.title }}</router-link>
           </li>
