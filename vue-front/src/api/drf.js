@@ -5,7 +5,6 @@ export default {
     login: '/rest-auth/login/',
     logout: '/rest-auth/logout/',
     articleList: '/articles/',
-    artcielCereate: '/articles/create',
     movieList: '/movies/'
   }
 }
