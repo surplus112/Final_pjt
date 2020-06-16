@@ -5,13 +5,13 @@
         <p>{{ article.user.username }}</p>
         <p>{{ article.title }}</p>
         <p>{{ article.content }}</p>
-        <router-link @click="getArticle(article)" :to="{ name: 'ArticleUpdate', params: { id: article.id } }">
+        <router-link @click="getArticle(article)" :to="{ name: 'ArticleUpdate', params: { id: article.id }, query: { number: number} }">
           수정하기
         </router-link>
         <router-link @click.native="deleteArticle" to="/articles/comments/delete">
           삭제하기
         </router-link>
-        <router-view :article="this.article" />
+        <!-- <router-view :article="this.article" /> -->
         <Comment :articleId="article.id" />
       </div>
   </div>
@@ -33,7 +33,8 @@ export default {
   },
   data() {
     return {
-      article: null
+      article: null,
+      number: this.$route.query.number
     }
   },
   methods: {
@@ -75,3 +76,4 @@ export default {
 <style>
 
 </style>
+

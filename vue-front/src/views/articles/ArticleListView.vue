@@ -6,7 +6,7 @@
           <li v-for="(article, number) in articles" :key="`article_${article.id}`">
             <p>{{ number+1 }}</p>
             <p>{{ article }}</p>
-            <router-link :to="{ name: 'ArticleDetail', params: { id: article.id } }">{{ article.title }}</router-link>
+            <router-link :to="{ name: 'ArticleDetail', params: { id: article.id }, query: { number: number} }">{{ article.title }}</router-link>
           </li>
         </ul>
       </div>

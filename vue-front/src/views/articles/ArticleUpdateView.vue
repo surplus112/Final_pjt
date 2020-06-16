@@ -16,6 +16,7 @@
 </template>
 
 <script>
+// console.log(this.$route.query)
 import axios from 'axios'
 
 import { mapState } from 'vuex'
@@ -25,13 +26,21 @@ const SERVER_URL = "http://localhost:8000"
 export default {
   name: "ArticleUpdate",
   data() {
-    const index = this.$route.params.id
+    // const index = this.$route.params.id
+    const index = this.$route.query.number
+    // const index = this.number
     return {
-      index: +index-1,
+      index: +index,
+      // index: this.number,
       articleInfo: {
         title: null,
         content: null,
       }
+    }
+  },
+  props: {
+    number: {
+      type: Number
     }
   },
   computed: {
@@ -40,6 +49,7 @@ export default {
   methods: {
     inputValue() {
       // this.articleInfo.title = this.articles[this.index].title
+      console.log(this.index)
       this.articleInfo.title = this.articles[this.index].title
       this.articleInfo.content = this.articles[this.index].content
     },
