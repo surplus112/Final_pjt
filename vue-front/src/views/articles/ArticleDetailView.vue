@@ -12,7 +12,7 @@
           삭제하기
         </router-link>
         <router-view :article="this.article" />
-        <Comment :article_id="article.id" />
+        <Comment :articleId="article.id" />
       </div>
   </div>
 </template>
