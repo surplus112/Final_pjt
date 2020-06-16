@@ -3,8 +3,8 @@
     <h1>MovieList</h1>
     <div id="movie-list">
       <div v-for="(movie, number) in movies" :key="`movie_${movie.id}`">
-        <div>{{ number }}</div>
-      <MovieListItem :movie="movie" />
+        <div>{{ number+1 }}</div>
+      <MovieListItem :movie="movie" :number="number" />
       </div>
     </div>
   </div>

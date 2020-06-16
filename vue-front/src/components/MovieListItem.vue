@@ -17,18 +17,13 @@
 
 export default {
   name: "MovieListItem",
-  data() {
-    return {
-      number: this.$route.query.number
-    }
-  },
   props: {
     movie: {
       type: Object,
-    }
-    // number: {
-    //   type: Number
-    // },
+    },
+    number: {
+      type: Number
+    },
   },
   computed: {
     posterUrl() {
