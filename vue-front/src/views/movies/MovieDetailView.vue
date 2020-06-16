@@ -5,13 +5,18 @@
       <p>{{ movie.overview }}</p>
     </div>
     <div>
-      <router-link :to="{name: 'MovieUpdate', params: {id: movie}} ">수정</router-link>
+      <router-link :to="{name: 'MovieUpdate', params: {id: movie.id}, query: { number: number} } ">
+        수정
+      </router-link>
     </div>
+    <Review :movieId="movie.id" />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Review from '@/components/Review.vue'
+
 const SERVER_URL = 'http://localhost:8000'
 
 export default {
@@ -19,7 +24,11 @@ export default {
   data () {
     return {
       movie: null,
+      number: this.$route.query.number
     }
+  },
+  components: {
+    Review
   },
   methods: {
     fetchMovieDetail() {

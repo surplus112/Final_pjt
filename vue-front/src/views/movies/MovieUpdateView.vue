@@ -1,6 +1,14 @@
 <template>
   <div>
     <h1>MovieUpdate</h1>
+    <div>
+      <label for="title">title: </label>
+      <input id="tltle" type="text" v-model="movieInfo.title">
+    </div>
+    <!-- <div>
+      <label for="overview">content: </label>
+      <textarea id="overview" cols="30" rows="10" v-model="movieInfo.overview"></textarea>
+    </div> -->
   </div>
 </template>
 
@@ -14,18 +22,20 @@ const SERVER_URL = "http://localhost:8000"
 export default {
   name: "MovieUpdate",
   data() {
-    const index = this.$router.query.number
+    const index = this.$route.query.number
     return{
       index: +index,
       movieInfo: {
-        title:null,
-      }
+        movie: {
+          title: null,
+        }
+      },
     }
   },
   props: {
     number: {
       type: Number
-    },
+    }
   },
   computed: {
     ...mapState(['movies'])
