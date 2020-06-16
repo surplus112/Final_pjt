@@ -70,6 +70,6 @@ def comment_update(request, article_pk, comment_pk):
                 return Response(serializer.data)
         else:
             comment.delete()
-            return Response({'message':'Comment has been deleted!'})
+            return Response({'message': 'Comment has been deleted!'})
     else:
-        return Response({'message':'author only'})
+        return Response({'message': 'author only'})
