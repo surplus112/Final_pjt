@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>댓글</h1>
-    {{ article_id }}
     <div v-for="comment in comments" :key="`comment_${comment.id}`">
       {{ comment }}
       <div>
@@ -10,23 +9,28 @@
       </div>
     </div>
     <!-- 댓글 폼 만들고, 버튼 누르면 메서드 실행 -->
-    <form @submit.prevent="createComment">
+    <CommentCreate @submit-comment="createComment" />
+    <!-- <form @submit.prevent="createComment">
       <div>
         <label for="content">내용</label>
         <input v-model="commentForm.content" id="content">
       </div>
       <button type="submit">제출</button>
-    </form>
+    </form> -->
   </div>
 </template>
 
 <script>
+import CommentCreate from './CommentCreate.vue'
 import axios from 'axios'
 
 const SERVER_URL = 'http://localhost:8000'
 
 export default {
   name: 'Comment',
+  components: {
+    CommentCreate
+  },
   data() {
     return {
       comments: null,
@@ -36,27 +40,28 @@ export default {
     }
   },
   props: {
-    article_id: {
+    articleId: {
       type: Number
     }
   },
   methods: {
     // 댓글을 아예 db에 넣어서해보기!!!
     getCommentList() {
-      axios.get(`${SERVER_URL}/articles/${this.article_id}/comments/`)
+      axios.get(`${SERVER_URL}/articles/${this.articleId}/comments/`)
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           this.comments = res.data
         })
         .catch(err => console.log(err.response.data))
     },
-    createComment() {
+    createComment(content) {
       const config = {
         headers: {
           Authorization: `Token ${this.$cookies.get(`auth-token`)}`
         }
       }
-      axios.post(`${SERVER_URL}/articles/${this.article_id}/comments/create/`, this.commentForm, config)
+      this.commentForm.content = content
+      axios.post(`${SERVER_URL}/articles/${this.articleId}/comments/create/`, this.commentForm, config)
         .then(res => {
           console.log(res.data)
           this.getCommentList()
