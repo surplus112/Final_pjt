@@ -53,7 +53,7 @@ export default {
     }
   },
   methods: {
-    changeIsComment (comment) {
+    changeIsComment(comment) {
       this.checkComment.isComment = !this.checkComment.isComment
       this.checkComment.commentId = comment.id
       this.checkComment.commentValue = comment.content
@@ -96,7 +96,7 @@ export default {
           this.getCommentList()
         })
         .catch(err => {
-          console.log(this.commentForm)
+          // console.log(this.commentForm)
           console.log(err)
         })
     },

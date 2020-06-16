@@ -3,7 +3,8 @@
     <div class="card w-100">
       <img :src="posterUrl" class="card-img-top" alt="...">
       <div class="card-body">
-        <router-link :to="{ name: 'MovieDetail', params: { id: movie.id } }">
+        <!-- <div>{{ number+1 }}</div> -->
+        <router-link :to="{ name: 'MovieDetail', params: { id: movie.id }, query: { number: number} }">
           <h5 class="card-title">{{ movie.title }}</h5>
         </router-link>
         <p class="card-text"></p>
@@ -16,10 +17,18 @@
 
 export default {
   name: "MovieListItem",
+  data() {
+    return {
+      number: this.$route.query.number
+    }
+  },
   props: {
     movie: {
       type: Object,
-    },
+    }
+    // number: {
+    //   type: Number
+    // },
   },
   computed: {
     posterUrl() {
