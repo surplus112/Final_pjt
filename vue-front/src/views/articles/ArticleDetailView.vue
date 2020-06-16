@@ -2,7 +2,6 @@
   <div>
     <h1>ArticleDetail</h1>
     <div v-if="this.article">
-      <p>{{ number }}</p>
       <p>{{ article.user.username }}</p>
       <p>{{ article.title }}</p>
       <p>{{ article.content }}</p>

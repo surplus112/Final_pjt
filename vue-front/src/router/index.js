@@ -75,7 +75,7 @@ Vue.use(VueRouter)
     component: MovieDetailView
   },
   {
-    path: '/movies/:id',
+    path: '/movies/:id/updates',
     name: 'MovieUpdate',
     component: MovieUpdateView
   },

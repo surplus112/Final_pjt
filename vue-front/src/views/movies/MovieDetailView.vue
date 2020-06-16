@@ -3,15 +3,17 @@
     <div v-if="this.movie">
       <h1>{{ movie.title }}</h1>
       <p>{{ movie.overview }}</p>
-    </div>
-    <div>
       <router-link :to="{name: 'MovieUpdate', params: {id: movie.id}, query: { number: number} } ">
         수정
       </router-link>
+      <router-link @click.native="deleteMovie" to="/movies/review/delete">
+        삭제하기
+      </router-link>
+      <Review :movieId="movie.id" />
     </div>
-    <Review :movieId="movie.id" />
   </div>
 </template>
+
 
 <script>
 import axios from 'axios'
@@ -39,13 +41,26 @@ export default {
         })
         .catch(err => {console.log(err)})
     },
+    deleteMovie() {
+      const config = {
+        headers: {
+          Authorization: `Token ${this.$cookies.get(`auth-token`)}`
+        }
+      }
+      axios.delete(`${SERVER_URL}/movies/${this.movie.id}/update/`, config)
+        .then(res => {
+          // console.log(res.data.message)
+          this.$router.push({ name: 'MovieList' })
+          alert(res.data.message)
+        })
+        .catch(err => alert(err))
+    }
   },
   created() {
     this.fetchMovieDetail()
   }
 }
 </script>
-
 <style>
 
 </style>
