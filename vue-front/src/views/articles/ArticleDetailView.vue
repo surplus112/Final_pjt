@@ -1,15 +1,14 @@
 <template>
   <div>
-    <h1>ArticleDetail</h1>
     <div v-if="this.article">
-      <p>{{ article.user.username }}</p>
-      <p>{{ article.title }}</p>
-      <p>{{ article.content }}</p>
-      <router-link :to="{ name: 'ArticleUpdate', params: { id: article.id }, query: { number: number} }">
-        수정하기
+      <p class="text-white"> ID: {{ article.user.username }}</p>
+      <p class="text-white"> 제목: {{ article.title }}</p>
+      <p class="text-white"> 내용: {{ article.content }}</p>
+      <router-link class="text-white" :to="{ name: 'ArticleUpdate', params: { id: article.id }, query: { number: number} }">
+        수정
       </router-link>
-      <router-link @click.native="deleteArticle" to="/articles/comments/delete">
-        삭제하기
+      <router-link class="text-white" @click.native="deleteArticle" to="/articles/comments/delete">
+        삭제
       </router-link>
       <!-- <router-view :article="this.article" /> -->
       <Comment :articleId="article.id" />

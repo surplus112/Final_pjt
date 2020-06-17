@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>{{ userInfo }}님의 Mypage</h3>
+    <h3 class="text-white">{{ userInfo }}님의 My Page</h3>
     <hr>
     <div v-for="review in reviews" :key="`review_${review.id}`">
       <router-link :to="{ name: 'MovieDetail', params: { id: review.movie.id } }">{{ review.movie.title }}</router-link>

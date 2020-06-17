@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>ArticleUpdate</h1>
+    <h1 class="text-white">Article Update</h1>
     <div>
       <label for="title">title: </label>
       <input id="tltle" type="text" v-model="articleInfo.title">

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>댓글</h1>
+    <h4 class="text-white">----------댓글----------</h4>
     <div v-for="comment in comments" :key="`comment_${comment.id}`">
-      {{ comment }}
+      <p class="text-white">{{ comment.content }}</p>
       <div v-if="checkComment.isComment && comment.id === checkComment.commentId">
         <CommentCreate :commentValue="checkComment.commentValue" @change-comment="updateComment"/>
       </div>

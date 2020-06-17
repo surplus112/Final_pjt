@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>Navar</h1>
+    <h1>Navbar</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Navar",
+  name: "Navbar",
   data () {
     return {}
   },

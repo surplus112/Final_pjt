@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>MovieList</h1>
+    <h1 class="text-white">영화 목록</h1>
     <div id="movie-list" class="row">
       <div class="col-3 padding-0px" v-for="(movie, number) in movies" :key="`movie_${movie.id}`">
         <!-- <div>{{ number+1 }}</div> -->

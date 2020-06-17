@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>MovieSearch</h1>
+    <h1 class="text-white">Movie Search</h1>
   </div>
 </template>
 

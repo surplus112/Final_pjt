@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>MovieUpdate</h1>
+    <h1 class="text-white">Movie Update</h1>
     <div>
       <label for="title">title: </label>
       <input id="tltle" type="text" v-model="movieInfo.title">
