@@ -9,6 +9,12 @@ from .models import Movie, Genre, Review
 
 # Create your views here.
 @api_view(['GET'])
+def genre_list(request):
+    genres = Genre.objects.all()
+    serializer = GenreSerializer(genres, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def movie_list(request):
     movies = Movie.objects.all()
     serializer = MovieListSerializer(movies, many=True)
@@ -41,6 +47,15 @@ def movie_update(request, movie_pk):
     else:
         movie.delete()
         return Response({'message':'Movie has been deleted!'})
+
+@api_view(['GET'])
+def user_reviews(request, user_pk):
+    if request.user.id == user_pk:
+        reviews = Review.objects.filter(user=user_pk)
+        serializer = ReviewListSerializer(reviews, many=True)
+        return Response(serializer.data)
+    else:
+        return Response({'message':'You do not have permission!'})
 
 @api_view(['GET'])
 def review_list(request, movie_pk):

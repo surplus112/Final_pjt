@@ -19,7 +19,7 @@ class MovieSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ReviewListSerializer(serializers.ModelSerializer):
-    # movie = MovieSerializer(required=False)
+    movie = MovieSerializer(required=False)
     user = UserSerializer(required=False)
     class Meta:
         model = Review
@@ -27,7 +27,7 @@ class ReviewListSerializer(serializers.ModelSerializer):
 
 class ReviewSerializer(serializers.ModelSerializer):
     movie = MovieSerializer(required=False)
-    user = UserSerializer(required=False)
+    # user = UserSerializer(required=False)
     class Meta:
         model = Review
         fields = '__all__'
