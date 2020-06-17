@@ -1,11 +1,11 @@
 <template>
-  <div class="col-3">
-    <div class="card w-100">
-      <img :src="posterUrl" class="card-img-top" alt="...">
-      <div class="card-body">
+  <div>
+    <div id="card" class="card">
+      <div id="card-body" class="card-body">
         <!-- <div>{{ number+1 }}</div> -->
         <router-link :to="{ name: 'MovieDetail', params: { id: movie.id }, query: { number: number} }">
-          <h5 class="card-title">{{ movie.title }}</h5>
+          <img :src="posterUrl" class="card-img-top" alt="..."> 
+          <!-- <h5 class="card-title">{{ movie.title }}</h5> -->
         </router-link>
         <p class="card-text"></p>
       </div>
@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     posterUrl() {
-      return "https://image.tmdb.org/t/p/w300/" + this.movie.poster_path
+      return "https://image.tmdb.org/t/p/w400" + this.movie.poster_path
     },
   },
 }
@@ -35,5 +35,12 @@ export default {
 </script>
 
 <style>
+#card {
+  background-color: #2c3e50;
+  border: #2c3e50;
+}
 
+#card-body {
+  background-color: #2c3e50;
+}
 </style>
