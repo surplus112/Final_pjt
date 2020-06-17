@@ -49,6 +49,7 @@ def movie_update(request, movie_pk):
         return Response({'message':'Movie has been deleted!'})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def user_reviews(request, user_name):
     if request.user.username == user_name:
         reviews = Review.objects.filter(user=request.user.id)
@@ -56,6 +57,12 @@ def user_reviews(request, user_name):
         return Response(serializer.data)
     else:
         return Response({'message':'You do not have permission!'})
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def recommend_movie():
+    # if request.
+    pass
 
 @api_view(['GET'])
 def review_list(request, movie_pk):
