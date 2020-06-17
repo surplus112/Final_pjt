@@ -72,13 +72,13 @@ export default new Vuex.Store({
         .then(res => commit('SET_ARTICLES', res.data))
         .catch(err => console.log(err))
     },
-    createArticle({ getters }, articleData) {
-      axios.post(SERVER.URL + SERVER.ROUTES.createArticle, articleData, getters.config)
-        .then(() => {
-          router.push({ name: 'ArticleList' })
-        })
-        .catch(err => console.log(err.response.data))
-    },
+    // createArticle({ getters }, articleData) {
+    //   axios.post(SERVER.URL + SERVER.ROUTES.createArticle, articleData, getters.config)
+    //     .then(() => {
+    //       router.push({ name: 'ArticleList' })
+    //     })
+    //     .catch(err => console.log(err.response.data))
+    // },
     fetchMovies({ commit }) {
       axios.get(SERVER.URL + SERVER.ROUTES.movieList)
         .then(res => commit('SET_MOVIES', res.data))
