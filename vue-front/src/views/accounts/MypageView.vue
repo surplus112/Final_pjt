@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h1>Mypage</h1>
-    <h3>{{ userInfo }}</h3>
+    <h3>{{ userInfo }}님의 Mypage</h3>
+    <hr>
     <div v-for="review in reviews" :key="`review_${review.id}`">
-      {{ review.movie.title }}
-      {{ review.score }}
-      {{ review.content }}
+      <router-link :to="{ name: 'MovieDetail', params: { id: review.movie.id } }">{{ review.movie.title }}</router-link>
+      <p class="mt-3">평점: {{ review.score }}</p>
+      <p>리뷰: {{ review.content }}</p>
+      <hr>
     </div>
   </div>
 </template>
