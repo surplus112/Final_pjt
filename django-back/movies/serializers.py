@@ -6,7 +6,7 @@ from accounts.serializers import UserSerializer
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
-        fields = ['name', 'movie_genres']
+        fields = ['id', 'name', 'movie_genres']
 
 class MovieListSerializer(serializers.ModelSerializer):
     class Meta:

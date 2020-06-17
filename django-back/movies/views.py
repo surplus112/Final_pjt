@@ -60,9 +60,40 @@ def user_reviews(request, user_name):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def recommend_movie():
-    # if request.
-    pass
+def recommend_movie(request, user_name):
+    if request.user.username == user_name:
+        reviews = Review.objects.filter(user=request.user.id)
+        if len(reviews) < 3:
+            movies = Movie.objects.order_by("?")[:12]
+            serializer = MovieListSerializer(movies, many=True)
+            return Response(serializer.data)
+        else:
+            movie_dict = {}
+            for review in reviews:
+                # print(review.movie_id)
+                movies = Movie.objects.filter(pk=review.movie_id)
+                # print(movies)
+                serializer = MovieListSerializer(movies, many=True)
+                # print(serializer.data)
+                for movie in serializer.data:
+                    for genre in movie['genres']:
+                        # print(genre)
+                        if genre not in movie_dict:
+                            movie_dict[genre] = 1
+                        else:
+                            movie_dict[genre] += 1
+            # print(movie_dict)
+            movies_arr = sorted(movie_dict.items(), key= lambda x: -x[1])
+            genre = Genre.objects.filter(pk=movies_arr[0][0])
+            # print(genre)
+            genre_serializer = GenreSerializer(genre, many=True)
+            recommend = genre_serializer.data[0]['movie_genres']
+            recommend = recommend[:12]
+            movies = Movie.objects.filter(id__in=recommend)
+            serializer = MovieListSerializer(movies, many=True)
+            return Response(serializer.data)
+    else:
+        return Response({'message':'You do not have permission!'})
 
 @api_view(['GET'])
 def review_list(request, movie_pk):
