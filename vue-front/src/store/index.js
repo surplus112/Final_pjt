@@ -47,7 +47,7 @@ export default new Vuex.Store({
           commit('SET_TOKEN', res.data.key)
           router.push({ name: 'Home' })
         })
-        .catch(err => alert(err.response.data))
+        .catch(err => console.log(err.response))
     },
     signup({ dispatch }, signupData) {
       const info = {
