@@ -14,6 +14,7 @@ export default new Vuex.Store({
     authToken: cookies.get('auth-token'),
     articles: [],
     movies: [],
+    userInfo: null,
     // article: null,
   },
   getters: {
