@@ -3,6 +3,7 @@ from .models import Article, Comment
 from accounts.serializers import UserSerializer
 
 class ArticleListSerializer(serializers.ModelSerializer):
+    user = UserSerializer(required=False)
     class Meta:
         model = Article
         fields = ['id', 'title', 'content', 'user', 'updated_at']
