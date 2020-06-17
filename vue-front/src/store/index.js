@@ -32,6 +32,9 @@ export default new Vuex.Store({
     SET_MOVIES(state, movies) {
       state.movies = movies
     },
+    SET_USERINFO(state, userInfo) {
+      state.userInfo = userInfo
+    }
     // SET_ARTICLE(state, article) {
     //   state.article = article
     // }
@@ -40,6 +43,7 @@ export default new Vuex.Store({
     postAuthData({ commit }, info) {
       axios.post(SERVER.URL + info.location, info.data)
         .then(res => {
+          // console.log(res)
           commit('SET_TOKEN', res.data.key)
           router.push({ name: 'Home' })
         })
@@ -52,16 +56,18 @@ export default new Vuex.Store({
       }
       dispatch('postAuthData', info)
     },
-    login({ dispatch }, loginData) {
+    login({ dispatch, commit }, loginData) {
       const info = {
         data: loginData,
         location: SERVER.ROUTES.login
       }
+      commit('SET_USERINFO', loginData.username)
       dispatch('postAuthData', info)
     },
     logout({ getters, commit }) {
       axios.post(SERVER.URL + SERVER.ROUTES.logout, null, getters.config)
         .then(() => {
+          // console.log(res)
           commit('SET_TOKEN', null)
           cookies.remove('auth-token')
           router.push({ name: 'Home' })

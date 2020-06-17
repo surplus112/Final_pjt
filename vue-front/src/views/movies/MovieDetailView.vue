@@ -1,15 +1,24 @@
 <template>
-  <div>
-    <div v-if="this.movie">
-      <h1>{{ movie.title }}</h1>
-      <p>{{ movie.overview }}</p>
-      <router-link :to="{name: 'MovieUpdate', params: {id: movie.id}, query: { number: number} } ">
-        수정
-      </router-link>
-      <router-link @click.native="deleteMovie" to="/movies/review/delete">
-        삭제하기
-      </router-link>
-      <Review :movieId="movie.id" />
+  <div v-if="this.movie">
+    <div id="movie_detail"> 
+      <div class="row">
+        <div id="image">
+          <img :src="posterUrl" alt="..."> 
+        </div>
+        <div id="dvTitle">
+          <h1>{{ movie.title }}</h1>
+        </div>
+        <div id="overview">
+          <p>{{ movie.overview }}</p>
+        </div>
+        <router-link :to="{name: 'MovieUpdate', params: {id: movie.id}, query: { number: number} } ">
+          수정
+        </router-link>
+        <router-link @click.native="deleteMovie" to="/movies/review/delete">
+          삭제하기
+        </router-link>
+        <Review :movieId="movie.id" />
+      </div>
     </div>
   </div>
 </template>
@@ -30,7 +39,12 @@ export default {
     }
   },
   components: {
-    Review
+    Review,
+  },
+  computed: {
+    posterUrl() {
+      return "https://image.tmdb.org/t/p/original" + this.movie.poster_path
+    },
   },
   methods: {
     fetchMovieDetail() {
@@ -62,5 +76,14 @@ export default {
 }
 </script>
 <style>
+#img{
+  margin:5px;
+}
+
+#dvBody {
+  width: 800px;
+  margin: 10px;
+  line-height: 15px;
+}
 
 </style>
