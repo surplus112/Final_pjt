@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="review">
     <h1>리뷰</h1>
     <div v-for="review in reviews" :key="`review_${review.id}`">
       {{ review }}

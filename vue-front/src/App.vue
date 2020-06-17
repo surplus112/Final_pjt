@@ -1,38 +1,34 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg">
-      <router-link class="text-white" to="/">Home</router-link>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <div class="nav-item">
-            <div class="navbar-nav-item">
-              <router-link class="text-white" :to="{ name: 'ArticleList' }">ArticleList</router-link> |
-            </div>
-            <div class="navbar-nav-item">
-            <router-link class="text-white" :to="{ name: 'MovieList' }">MovieList</router-link> |
-            </div>
-            <div class="navbar-nav-item">
-            <router-link class="text-white" v-if="isLoggedIn" :to="{ name: 'ArticleCreate' }">New Article</router-link> |
-            </div>
-          </div>
-          <div class="nav-item">
-            <div class="navbar-nav-item">
-            <router-link class="text-white" v-if="!isLoggedIn" :to="{ name: 'Login' }">Login</router-link> |
-            </div>
-            <div class="navbar-nav-item">
-            <router-link class="text-white" v-if="!isLoggedIn" :to="{ name: 'Signup' }">Signup</router-link> |
-            </div>
-            <div class="navbar-nav-item">
-            <router-link class="text-white " v-if="isLoggedIn" :to="{ name: 'Mypage' }">Mypage</router-link> |
-            </div>
-            <div class="navbar-nav-item">
-            <router-link class="text-white" v-if="isLoggedIn" :to="{ name: 'Logout' }">Logout</router-link> |
-            </div>
-          </div>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <router-link class="navbar-brand" to="/">Home</router-link>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <router-link class="text-decoration-none mx-3" :to="{ name: 'ArticleList' }">ArticleList <span class="sr-only">(crrent)</span></router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="text-decoration-none mx-3" :to="{ name: 'MovieList' }">MovieList</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="text-decoration-none mx-3" v-if="isLoggedIn" :to="{ name: 'ArticleCreate' }">New Article</router-link>
+          </li>
+           <li class="nav-item">
+            <router-link class="text-decoration-none mx-3" v-if="!isLoggedIn" :to="{ name: 'Login' }">Login</router-link>
+          </li>
+           <li class="nav-item">
+            <router-link class="text-decoration-none mx-3" v-if="!isLoggedIn" :to="{ name: 'Signup' }">Signup</router-link>
+          </li>
+           <li class="nav-item">
+            <router-link class="text-decoration-none mx-3" v-if="isLoggedIn" :to="{ name: 'Mypage', params: {name: `${userInfo}` } }">Mypage</router-link>
+          </li>
+           <li class="nav-item">
+            <router-link class="text-decoration-none mx-3" v-if="isLoggedIn" :to="{ name: 'Logout' }">Logout</router-link>
+          </li>
+        </ul>
       </div>
     </nav>
     <router-view />
@@ -41,12 +37,13 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'App',
   computed: {
-    ...mapGetters(['isLoggedIn'])
+    ...mapGetters(['isLoggedIn']),
+    ...mapState(['userInfo'])
   },
   methods: {
   },
@@ -61,9 +58,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #2c3e50;
-  width: 100%;
-  height: 100%;
+  background-color: whitesmoke;
 }
 
 #nav {

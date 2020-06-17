@@ -40,7 +40,7 @@ Vue.use(VueRouter)
     component: SignupView
   },
   {
-    path: '/accounts/mypage',
+    path: '/accounts/:name/mypage',
     name: 'Mypage',
     component: MypageView
   },

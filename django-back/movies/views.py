@@ -49,9 +49,9 @@ def movie_update(request, movie_pk):
         return Response({'message':'Movie has been deleted!'})
 
 @api_view(['GET'])
-def user_reviews(request, user_pk):
-    if request.user.id == user_pk:
-        reviews = Review.objects.filter(user=user_pk)
+def user_reviews(request, user_name):
+    if request.user.username == user_name:
+        reviews = Review.objects.filter(user=request.user.id)
         serializer = ReviewListSerializer(reviews, many=True)
         return Response(serializer.data)
     else:
