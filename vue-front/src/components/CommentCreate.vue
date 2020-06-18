@@ -2,7 +2,7 @@
   <div>
     <form>
       <div>
-        <label for="content">내용</label>
+        <label for="content" class="text-white">내용</label>
         <span v-if="commentValue">
           <input @keypress.enter.prevent="changeInput" id="content" :value="commentValue" @input="newValue=$event.target.value">
           <button @click.prevent="changeInput" type="submit">수정</button>

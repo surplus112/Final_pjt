@@ -1,16 +1,16 @@
 <template>
   <div>
     <span v-if="reviewValue">
-      <label for="score">평점</label>
+      <label for="score" class="text-white">평점</label>
       <input id="score" :value="reviewScore" @input="reviewData.score=$event.target.value">
-      <label for="content">내용</label>
+      <label for="content" class="text-white">내용</label>
       <input id="content" :value="reviewValue" @input="reviewData.content=$event.target.value">
       <button @click.prevent="changeInput" type="submit">제출</button>
     </span>
     <span v-else>
-      <label for="score">평점</label>
+      <label for="score"  class="text-white">평점</label>
       <input id="score" v-model="reviewData.score">
-      <label for="content">내용</label>
+      <label for="content"  class="text-white">내용</label>
       <input id="content" v-model="reviewData.content">
       <button @click.prevent="onInput" type="submit">제출</button>
     </span>

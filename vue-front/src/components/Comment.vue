@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>댓글</h1>
+    <h4 class="text-white">----------댓글----------</h4>
     <div v-for="comment in comments" :key="`comment_${comment.id}`">
       {{ comment }}
       <div v-if="checkComment.isComment && comment.id === checkComment.commentId">
