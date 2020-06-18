@@ -1,23 +1,28 @@
 <template>
-  <div v-if="this.movie">
-    <div id="movie_detail"> 
-      <div class="row">
-        <div id="image">
-          <img :src="posterUrl" alt="..."> 
+  <div class="container">
+    <div id="movie_detail" class="row"> 
+          <div id="dvTitle" class="text-white">
+            <h1 class="text-white">{{ movie.title }}</h1>
+          </div>
+      <div class="col-12 row">
+        <div class="col-6">
+          <img :src="posterUrl" class="w-100" alt="..."> 
         </div>
-        <div id="dvTitle">
-          <h1>{{ movie.title }}</h1>
-        </div>
-        <div id="overview">
+        <div id="overview" class="col-6 text-white">
+          <p class="text-white">줄거리</p>
           <p>{{ movie.overview }}</p>
         </div>
-        <router-link :to="{name: 'MovieUpdate', params: {id: movie.id}, query: { number: number} } ">
+        <div class="col-12 text-center">
+        <router-link class="text-white" :to="{name: 'MovieUpdate', params: {id: movie.id}, query: { number: number} } ">
           수정
         </router-link>
-        <router-link @click.native="deleteMovie" to="/movies/review/delete">
-          삭제하기
+        <router-link class="text-white" @click.native="deleteMovie" to="/movies/review/delete">
+          삭제
         </router-link>
-        <Review :movieId="movie.id" />
+        </div>
+        <div class="col-12">
+          <Review :movieId="movie.id" />
+        </div>
       </div>
     </div>
   </div>
@@ -76,7 +81,7 @@ export default {
 }
 </script>
 <style>
-#img{
+/* #img{
   margin:5px;
 }
 
@@ -84,6 +89,6 @@ export default {
   width: 800px;
   margin: 10px;
   line-height: 15px;
-}
+} */
 
 </style>

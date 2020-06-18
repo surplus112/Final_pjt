@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3>{{ userInfo }}님의 Mypage</h3>
+  <div class="text-white">
+    <h3 class="text-white">{{ userInfo }}님의 Mypage</h3>
     <hr>
     <div v-if="reviews">
       <div v-for="review in reviews" :key="`review_${review.id}`">
@@ -10,7 +10,7 @@
         <hr>
       </div>
     </div>
-    <h2>추천 영화</h2>
+    <h2 class="text-white">추천 영화</h2>
     <div id="movie-list" class="row">
       <div class="col-3 padding-0px" v-for="(recommend, number) in myRecommend" :key="`recommend_${recommend.id}`">
         <MovieListItem :movie="recommend" :number="number" />

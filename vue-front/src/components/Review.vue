@@ -1,8 +1,8 @@
 <template>
   <div id="review">
-    <h1>리뷰</h1>
+    <h1 class="text-white">리뷰</h1>
     <div v-for="review in reviews" :key="`review_${review.id}`">
-      {{ review }}
+      <p class="text-white">{{ review.content }} {{ review.score }}</p>
       <div v-if="checkReview.isReview && review.id === checkReview.reviewId">
         <ReviewCreate :reviewScore="checkReview.reviewScore" :reviewValue="checkReview.reviewValue" @change-review="updateReview" />
       </div>
