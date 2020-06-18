@@ -11,8 +11,8 @@
         <textarea v-model="articleData.content" class="form-control w-50 mx-auto" id="content" rows="3"></textarea>
       </div>
       <div>
-        <button @click.prevent="createArticle">Submit!</button>
-      </div>
+      <button @click.prevent="createArticle">Submit!</button>
+    </div>
     </form>
   </div>
 </template>
