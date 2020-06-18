@@ -22,7 +22,6 @@
 <script>
 import axios from 'axios'
 import MovieListItem from '@/components/MovieListItem.vue'
-import { mapState } from 'vuex'
 
 const SERVER_URL = "http://localhost:8000"
 
@@ -30,15 +29,13 @@ export default {
   name: 'Mypage',
   data () {
     return {
+      userInfo: window.localStorage.getItem('userInfo'),
       reviews: null,
       myRecommend: []
     }
   },
   components: {
     MovieListItem
-  },
-  computed: {
-    ...mapState(['userInfo'])
   },
   methods: {
     fetchUserReview() {
@@ -49,7 +46,6 @@ export default {
       }
       axios.get(`${SERVER_URL}/movies/reviews/${this.userInfo}/`, config)
         .then(res => {
-          // console.log(res)
           this.reviews = res.data
         })
         .catch(err => {
@@ -64,7 +60,6 @@ export default {
       }
       axios.get(`${SERVER_URL}/movies/recommends/${this.userInfo}/`, config)
         .then(res => {
-          console.log(res)
           this.myRecommend = res.data
         })
         .catch(err => {

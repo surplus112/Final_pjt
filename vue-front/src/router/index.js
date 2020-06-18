@@ -12,7 +12,7 @@ import ArticleCreateView from '../views/articles/ArticleCreateView.vue'
 import ArticleDetailView from '../views/articles/ArticleDetailView.vue'
 import ArticleUpdateView from '../views/articles/ArticleUpdateView.vue'
 
-import MovieListView from '../views/movies/MovieListView.vue'
+// import MovieListView from '../views/movies/MovieListView.vue'
 import MovieDetailView from '../views/movies/MovieDetailView.vue'
 import MovieUpdateView from '../views/movies/MovieUpdateView.vue'
 
@@ -64,11 +64,11 @@ Vue.use(VueRouter)
     name: 'ArticleUpdate',
     component: ArticleUpdateView
   },
-  {
-    path: '/movies',
-    name: 'MovieList',
-    component: MovieListView
-  },
+  // {
+  //   path: '/movies',
+  //   name: 'MovieList',
+  //   component: MovieListView
+  // },
   {
     path: '/movies/:id',
     name: 'MovieDetail',
@@ -88,7 +88,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['Login', 'Signup', 'Home', 'MovieList', 'MovieDetail']
+  const publicPages = ['Login', 'Signup', 'Home', 'ArticleList', 'MovieDetail']
   const authPages = ['Login', 'Signup']
 
   const authRequired = !publicPages.includes(to.name)
