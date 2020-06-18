@@ -30,6 +30,7 @@ def article_create(request):
         return Response(serializer.data)
 
 @api_view(['PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def article_update(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     if request.user.id == article.user.id:
@@ -40,9 +41,9 @@ def article_update(request, article_pk):
                 return Response(serializer.data)
         else:
             article.delete()
-            return Response({'message':'Article has been deleted!'})
+            return Response({'message': 'Article has been deleted!'})
     else:
-        return Response({'message':'author only'})
+        return Response({'message': 'Author only'})
 
 @api_view(['GET'])
 def comment_list(request, article_pk):
@@ -60,6 +61,7 @@ def comment_create(request, article_pk):
         return Response(serializer.data)
 
 @api_view(['PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def comment_update(request, article_pk, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
     if request.user.id == comment.user.id:

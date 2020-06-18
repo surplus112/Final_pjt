@@ -46,7 +46,7 @@ def movie_update(request, movie_pk):
             return Response(serializer.data)
     else:
         movie.delete()
-        return Response({'message':'Movie has been deleted!'})
+        return Response({'message': 'Movie has been deleted!'})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -56,44 +56,45 @@ def user_reviews(request, user_name):
         serializer = ReviewListSerializer(reviews, many=True)
         return Response(serializer.data)
     else:
-        return Response({'message':'You do not have permission!'})
+        return Response({'message': 'You do not have permission!'})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def recommend_movie(request, user_name):
     if request.user.username == user_name:
+        # request user's reviews
         reviews = Review.objects.filter(user=request.user.id)
+        # number of reviews less than 3
         if len(reviews) < 3:
+            # random
             movies = Movie.objects.order_by("?")[:12]
             serializer = MovieListSerializer(movies, many=True)
             return Response(serializer.data)
         else:
             movie_dict = {}
             for review in reviews:
-                # print(review.movie_id)
                 movies = Movie.objects.filter(pk=review.movie_id)
-                # print(movies)
                 serializer = MovieListSerializer(movies, many=True)
-                # print(serializer.data)
+                # genre count
                 for movie in serializer.data:
                     for genre in movie['genres']:
-                        # print(genre)
                         if genre not in movie_dict:
                             movie_dict[genre] = 1
                         else:
                             movie_dict[genre] += 1
-            # print(movie_dict)
+            # sort genre
             movies_arr = sorted(movie_dict.items(), key= lambda x: -x[1])
+            # the most seleted genre
             genre = Genre.objects.filter(pk=movies_arr[0][0])
-            # print(genre)
             genre_serializer = GenreSerializer(genre, many=True)
+            # Search for a movie that corresponds to the genre
             recommend = genre_serializer.data[0]['movie_genres']
             recommend = recommend[:12]
             movies = Movie.objects.filter(id__in=recommend)
             serializer = MovieListSerializer(movies, many=True)
             return Response(serializer.data)
     else:
-        return Response({'message':'You do not have permission!'})
+        return Response({'message': 'You do not have permission!'})
 
 @api_view(['GET'])
 def review_list(request, movie_pk):
@@ -124,30 +125,4 @@ def review_update(request, movie_pk, review_pk):
             review.delete()
             return Response({'message': 'Review has been deleted!'})
     else:
-        return Response({'message': 'author only'})
-
-
-
-
-
-# @api_view(['GET'])
-# def movie_detail(request, movie_pk):
-#     movie = get_object_or_404(Movie, pk=movie_pk)
-#     serializer = MovieSerializer(movie)
-#     return Response(serializer.data)
-
-# @api_view(['PUT'])
-# @permission_classes([IsAdminUser])
-# def movie_update(request, movie_pk):
-#     movie = get_object_or_404(Movie, pk=movie_pk)
-#     serializer = MovieSerializer(data=request.data, instance=movie)
-#     if serializer.is_valid(raise_exception=True):
-#         serializer.save()
-#         return Response(serializer.data)
-
-# @api_view(['DELETE'])
-# @permission_classes([IsAdminUser])
-# def movie_delete(request, movie_pk):
-#     movie = get_object_or_404(Movie, pk=movie_pk)
-#     movie.delete()
-#     return HttpResponse(status=200)
+        return Response({'message': 'Author only'})
