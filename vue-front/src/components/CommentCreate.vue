@@ -4,8 +4,8 @@
       <div>
         <label for="content">내용</label>
         <span v-if="commentValue">
-          <input @keypress.enter.prevent="changeInput" id="content" :value="commentValue">
-          <!-- <button @click.prevent="changeInput" type="submit">제출</button> -->
+          <input @keypress.enter.prevent="changeInput" id="content" :value="commentValue" @input="newValue=$event.target.value">
+          <button @click.prevent="changeInput" type="submit">수정</button>
         </span>
         <span v-else>
           <input @keypress.enter.prevent="onInput" id="content" v-model="newValue">
@@ -36,8 +36,8 @@ export default {
       this.$emit('submit-comment', this.newValue)
       this.newValue = null
     },
-    changeInput(e) {
-      this.$emit('change-comment', e.target.value)
+    changeInput() {
+      this.$emit('change-comment', this.newValue)
     }
   },
 }
