@@ -48,8 +48,6 @@ export default {
   },
   methods: {
     inputValue() {
-      // this.articleInfo.title = this.articles[this.index].title
-      console.log(this.index)
       this.articleInfo.title = this.articles[this.index].title
       this.articleInfo.content = this.articles[this.index].content
     },

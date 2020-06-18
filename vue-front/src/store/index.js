@@ -15,7 +15,6 @@ export default new Vuex.Store({
     articles: [],
     movies: [],
     userInfo: null,
-    // article: null,
   },
   getters: {
     isLoggedIn: state => !!state.authToken,
@@ -34,20 +33,17 @@ export default new Vuex.Store({
     },
     SET_USERINFO(state, userInfo) {
       state.userInfo = userInfo
+      window.localStorage.setItem('userInfo', userInfo);
     }
-    // SET_ARTICLE(state, article) {
-    //   state.article = article
-    // }
   },
   actions: {
     postAuthData({ commit }, info) {
       axios.post(SERVER.URL + info.location, info.data)
         .then(res => {
-          // console.log(res)
           commit('SET_TOKEN', res.data.key)
           router.push({ name: 'Home' })
         })
-        .catch(err => console.log(err.response))
+        .catch(err => alert(err.response))
     },
     signup({ dispatch }, signupData) {
       const info = {
@@ -70,6 +66,7 @@ export default new Vuex.Store({
           // console.log(res)
           commit('SET_TOKEN', null)
           cookies.remove('auth-token')
+          window.localStorage.removeItem('userInfo');
           router.push({ name: 'Home' })
         })
         .catch(err => console.log(err.response.data))
@@ -79,21 +76,11 @@ export default new Vuex.Store({
         .then(res => commit('SET_ARTICLES', res.data))
         .catch(err => console.log(err))
     },
-    // createArticle({ getters }, articleData) {
-    //   axios.post(SERVER.URL + SERVER.ROUTES.createArticle, articleData, getters.config)
-    //     .then(() => {
-    //       router.push({ name: 'ArticleList' })
-    //     })
-    //     .catch(err => console.log(err.response.data))
-    // },
     fetchMovies({ commit }) {
       axios.get(SERVER.URL + SERVER.ROUTES.movieList)
         .then(res => commit('SET_MOVIES', res.data))
         .catch(err => console.log(err))
     },
-    // getArticle({ commit }, articleInfo) {
-    //   commit('SET_ARTICLE', articleInfo)
-    // }
   },
   modules: {
   }
