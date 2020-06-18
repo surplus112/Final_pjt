@@ -10,7 +10,7 @@
         <hr>
       </div>
     </div>
-
+    <h2>추천 영화</h2>
     <div id="movie-list" class="row">
       <div class="col-3 padding-0px" v-for="(recommend, number) in myRecommend" :key="`recommend_${recommend.id}`">
         <MovieListItem :movie="recommend" :number="number" />
